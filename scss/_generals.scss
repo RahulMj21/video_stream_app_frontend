@@ -1,0 +1,36 @@
+.container {
+  width: 80rem;
+  max-width: 90%;
+  margin: 0 auto;
+}
+.btn-brand {
+  padding: 0.6rem 1.8rem;
+  font-size: 1.25rem;
+  color: $light-theme-bg-primary;
+  letter-spacing: 0.4px;
+  border-radius: 0.3rem;
+  background: $brand-color;
+  cursor: pointer;
+  @include transition-ease;
+  &:hover {
+    background: $brand-color-light;
+  }
+  &:active {
+    transform: scale(0.98);
+    transition: none !important;
+  }
+}
+.btn-google {
+  display: inline-block;
+  width: 100%;
+  padding: 0.6rem 1.7rem;
+  border: 1px solid $dark-theme-border;
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  border-radius: 0.3rem;
+  @include flex-center(row);
+  gap: 0.7rem;
+  svg {
+    font-size: 1.4rem;
+  }
+}

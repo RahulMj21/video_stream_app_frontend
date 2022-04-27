@@ -1,0 +1,31 @@
+.header {
+  height: 4.3rem;
+  padding: 0 2rem;
+  border-bottom: 1px solid $dark-theme-border-light;
+  @include flex-custom(row, center, space-between);
+  .avatar {
+    position: relative;
+    img {
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    &__dropdown {
+      position: absolute;
+      display: none;
+      bottom: -4.2rem;
+      right: 0;
+      background: $dark-theme-bg-secondary;
+      border-radius: 0.7rem;
+      &.show {
+        display: block !important;
+      }
+      .item {
+        cursor: pointer;
+        padding: 0.4rem 1.3rem;
+        &:first-child {
+          border-bottom: 1px solid $dark-theme-border;
+        }
+      }
+    }
+  }
+}
