@@ -27,11 +27,14 @@ const Register = () => {
     AxiosError,
     RegisterInput
   >(registerUser, {
-    onError: (error) => {
-      toast.error(error.message);
+    onError: (error: any) => {
+      toast.error(
+        error?.response?.data?.message
+          ? error.response.data.message
+          : error.message
+      );
     },
     onSuccess: ({ message }) => {
-      console.log(message);
       toast.success(message);
       router.push("/");
     },
@@ -55,7 +58,13 @@ const Register = () => {
         </div>
         <div className="input-group">
           <FaEnvelope />
-          <input type="email" id="email" required {...register("email")} />
+          <input
+            type="email"
+            placeholder="email"
+            id="email"
+            required
+            {...register("email")}
+          />
           <span>Email</span>
           <p className="error">{errors.email?.message}</p>
         </div>

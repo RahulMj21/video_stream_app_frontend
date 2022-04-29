@@ -4,6 +4,7 @@ import { NextPage } from "next";
 import React, { ReactElement, ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
 import { QueryClientProvider, QueryClient } from "react-query";
+import { MeContextProvider } from "../contexts/MeContext";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -19,8 +20,10 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Toaster position="top-right" />
-      {getLayout(<Component {...pageProps} />)}
+      <MeContextProvider>
+        <Toaster position="top-right" />
+        {getLayout(<Component {...pageProps} />)}
+      </MeContextProvider>
     </QueryClientProvider>
   );
 }

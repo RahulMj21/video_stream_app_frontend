@@ -40,6 +40,11 @@
           background: transparent;
           border-bottom: 1px solid $light-theme-border;
 
+          &::placeholder {
+            color: transparent;
+          }
+
+          &:not(:empty) + span,
           &:focus + span,
           &:valid + span {
             transform: translateY(-150%) scale(0.8);

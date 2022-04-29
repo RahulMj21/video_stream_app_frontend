@@ -2,19 +2,52 @@ import React from "react";
 import FormLayout from "../../layouts/FormLayout";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { zodResolver } from "@hookform/resolvers/zod";
 import GoogleButton from "../../components/GoogleButton";
 import { FaEnvelope, FaLock } from "react-icons/fa";
+import { LoginInput, LoginSchema } from "../../schemas";
+import { useMutation } from "react-query";
+import { loginUser } from "../../api";
+import { AxiosError } from "axios";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
+import Loader from "../../components/Loader";
 
 const Login = () => {
+  const router = useRouter();
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm();
+  } = useForm<LoginInput>({
+    resolver: zodResolver(LoginSchema),
+  });
 
-  const handleLogin = () => {};
+  const mutation = useMutation<
+    { success: Boolean; message: string },
+    AxiosError,
+    LoginInput
+  >(loginUser, {
+    onError: (error: any) => {
+      toast.error(
+        error?.response?.data?.message
+          ? error.response.data.message
+          : error.message
+      );
+    },
+    onSuccess: ({ message }) => {
+      toast.success(message);
+      router.push("/");
+    },
+  });
 
-  return (
+  const handleLogin = (values: LoginInput) => {
+    mutation.mutate(values);
+  };
+
+  return mutation.isLoading ? (
+    <Loader />
+  ) : (
     <div className="content">
       <h1>Login</h1>
       <form onSubmit={handleSubmit(handleLogin)} className="form">

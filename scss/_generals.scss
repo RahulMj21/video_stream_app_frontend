@@ -34,3 +34,29 @@
     font-size: 1.4rem;
   }
 }
+.progress-bar {
+  position: relative;
+  width: 90%;
+  height: 0.9rem;
+  border-radius: 1rem;
+  background: transparent;
+  border: 1px solid $dark-theme-border;
+  .progress {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 1rem;
+    background: linear-gradient(to right, $brand-color, $green-color);
+    animation: colorChange 4s linear infinite;
+    @keyframes colorChange {
+      0%,
+      100% {
+        filter: hue-rotate(0deg);
+      }
+      50% {
+        filter: hue-rotate(90deg);
+      }
+    }
+  }
+}

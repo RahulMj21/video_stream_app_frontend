@@ -1,5 +1,20 @@
 .sidebar {
-  flex: 0.18;
-  padding: 2rem;
+  position: relative;
+  flex: 0.15;
   border-right: 1px solid $dark-theme-border-light;
+  width: 100%;
+  overflow: hidden;
+  @include flex-custom(column, unset, unset);
+  .item {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    @include flex-align-center(row);
+    gap: 0.5rem;
+    @include transition-ease;
+    cursor: pointer;
+    &:hover {
+      background: $dark-theme-bg-secondary;
+      padding-left: 2.5rem;
+    }
+  }
 }
