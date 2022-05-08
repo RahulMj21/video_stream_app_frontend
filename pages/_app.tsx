@@ -1,29 +1,20 @@
 import "../scss/index.scss";
 import type { AppProps } from "next/app";
-import { NextPage } from "next";
-import React, { ReactElement, ReactNode } from "react";
+import React from "react";
 import { Toaster } from "react-hot-toast";
 import { QueryClientProvider, QueryClient } from "react-query";
-import { MeContextProvider } from "../contexts/MeContext";
+import { store } from "../store";
+import { Provider } from "react-redux";
 
-type NextPageWithLayout = NextPage & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
-
-type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
-};
-
-function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = React.useState(new QueryClient());
-  const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MeContextProvider>
-        <Toaster position="top-right" />
-        {getLayout(<Component {...pageProps} />)}
-      </MeContextProvider>
+      <Toaster position="top-right" />
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
     </QueryClientProvider>
   );
 }

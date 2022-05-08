@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import toast from "react-hot-toast";
 import { FcCancel, FcUpload } from "react-icons/fc";
 import { useMutation } from "react-query";
 import { uploadVideo } from "../api";
@@ -8,7 +9,15 @@ const UploadVideoModal = ({ setShowModal }: { setShowModal: Function }) => {
   const [progress, setProgress] = useState(0);
   const [dropRejected, setDropRejected] = useState(false);
 
-  const mutation = useMutation(uploadVideo);
+  const mutation = useMutation(uploadVideo, {
+    onError: (error) => {
+      console.log("error--->", error);
+    },
+    onSuccess: (data) => {
+      toast.success("upload complete");
+      setShowModal(false);
+    },
+  });
 
   const config = {
     onUploadProgress: (progressEvent: any) => {
@@ -23,13 +32,13 @@ const UploadVideoModal = ({ setShowModal }: { setShowModal: Function }) => {
     if (!acceptedFiles?.[0]) return;
     const formData = new FormData();
     formData.append("video", acceptedFiles[0]);
+
     mutation.mutate({ formData, config });
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: handleOndrop,
     onDropRejected: () => setDropRejected(true),
-
     multiple: false,
     accept: "video/mp4",
   });

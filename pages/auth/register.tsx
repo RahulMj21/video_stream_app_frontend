@@ -12,8 +12,9 @@ import toast from "react-hot-toast";
 import { AxiosError } from "axios";
 import Loader from "../../components/Loader";
 import { useRouter } from "next/router";
+import GuestRoute from "../../components/GuestRoute";
 
-const Register = () => {
+const Register = GuestRoute(() => {
   const {
     register,
     handleSubmit,
@@ -21,7 +22,9 @@ const Register = () => {
   } = useForm<RegisterInput>({
     resolver: zodResolver(RegisterSchema),
   });
+
   const router = useRouter();
+
   const mutation = useMutation<
     { success: Boolean; message: string },
     AxiosError,
@@ -47,66 +50,64 @@ const Register = () => {
   return mutation.isLoading ? (
     <Loader />
   ) : (
-    <div className="content">
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit(handleRegister)} className="form">
-        <div className="input-group">
-          <FaUser />
-          <input type="text" id="name" required {...register("name")} />
-          <span>Name</span>
-          <p className="error">{errors.name?.message}</p>
-        </div>
-        <div className="input-group">
-          <FaEnvelope />
-          <input
-            type="email"
-            placeholder="email"
-            id="email"
-            required
-            {...register("email")}
-          />
-          <span>Email</span>
-          <p className="error">{errors.email?.message}</p>
-        </div>
-        <div className="input-group">
-          <FaLock />
-          <input
-            type="password"
-            id="password"
-            required
-            {...register("password")}
-          />
-          <span>Password</span>
-          <p className="error">{errors.password?.message}</p>
-        </div>
-        <div className="input-group">
-          <FaUserLock />
-          <input
-            type="password"
-            id="confirmPassword"
-            required
-            {...register("confirmPassword")}
-          />
-          <span>Confirm Password</span>
-          <p className="error">{errors.confirmPassword?.message}</p>
-        </div>
-        <button type="submit" className="btn-brand">
-          Register
-        </button>
-        <p className="toggle-auth">
-          Already have an account?
-          <Link href="/auth/login">
-            <a> Login Now </a>
-          </Link>
-        </p>
-      </form>
-      <GoogleButton />
-    </div>
+    <FormLayout>
+      <div className="content">
+        <h1>Register</h1>
+        <form onSubmit={handleSubmit(handleRegister)} className="form">
+          <div className="input-group">
+            <FaUser />
+            <input type="text" id="name" required {...register("name")} />
+            <span>Name</span>
+            <p className="error">{errors.name?.message}</p>
+          </div>
+          <div className="input-group">
+            <FaEnvelope />
+            <input
+              type="email"
+              placeholder="email"
+              id="email"
+              required
+              {...register("email")}
+            />
+            <span>Email</span>
+            <p className="error">{errors.email?.message}</p>
+          </div>
+          <div className="input-group">
+            <FaLock />
+            <input
+              type="password"
+              id="password"
+              required
+              {...register("password")}
+            />
+            <span>Password</span>
+            <p className="error">{errors.password?.message}</p>
+          </div>
+          <div className="input-group">
+            <FaUserLock />
+            <input
+              type="password"
+              id="confirmPassword"
+              required
+              {...register("confirmPassword")}
+            />
+            <span>Confirm Password</span>
+            <p className="error">{errors.confirmPassword?.message}</p>
+          </div>
+          <button type="submit" className="btn-brand">
+            Register
+          </button>
+          <p className="toggle-auth">
+            Already have an account?
+            <Link href="/auth/login">
+              <a> Login Now </a>
+            </Link>
+          </p>
+        </form>
+        <GoogleButton />
+      </div>
+    </FormLayout>
   );
-};
-
-Register.getLayout = function getLayout(page: React.ReactElement) {
-  return <FormLayout>{page}</FormLayout>;
-};
+});
 
 export default Register;

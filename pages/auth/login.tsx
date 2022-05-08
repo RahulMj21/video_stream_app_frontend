@@ -12,8 +12,9 @@ import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import Loader from "../../components/Loader";
+import GuestRoute from "../../components/GuestRoute";
 
-const Login = () => {
+const Login = GuestRoute(() => {
   const router = useRouter();
   const {
     handleSubmit,
@@ -48,43 +49,48 @@ const Login = () => {
   return mutation.isLoading ? (
     <Loader />
   ) : (
-    <div className="content">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit(handleLogin)} className="form">
-        <div className="input-group">
-          <FaEnvelope />
-          <input type="email" id="email" required {...register("email")} />
-          <span>Email</span>
-          <p className="error">{errors.email?.message}</p>
-        </div>
-        <div className="input-group">
-          <FaLock />
-          <input
-            type="password"
-            id="password"
-            required
-            {...register("password")}
-          />
-          <span>Password</span>
-          <p className="error">{errors.password?.message}</p>
-        </div>
-        <button type="submit" className="btn-brand">
-          Login
-        </button>
-        <p className="toggle-auth">
-          Don't have an account?
-          <Link href="/auth/register">
-            <a>Register now </a>
-          </Link>
-        </p>
-      </form>
-      <GoogleButton />
-    </div>
+    <FormLayout>
+      <div className="content">
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit(handleLogin)} className="form">
+          <div className="input-group">
+            <FaEnvelope />
+            <input type="email" id="email" required {...register("email")} />
+            <span>Email</span>
+            <p className="error">{errors.email?.message}</p>
+          </div>
+          <div className="input-group">
+            <FaLock />
+            <input
+              type="password"
+              id="password"
+              required
+              {...register("password")}
+            />
+            <span>Password</span>
+            <p className="error">{errors.password?.message}</p>
+          </div>
+          <button type="submit" className="btn-brand">
+            Login
+          </button>
+          <p className="toggle-auth">
+            Don't have an account?
+            <Link href="/auth/register">
+              <a>Register now </a>
+            </Link>
+          </p>
+          <p className="or">OR</p>
+          <p className="toggle-auth">
+            Forgot Password?
+            <Link href="/auth/forgotpassword">
+              <a>Clilk here.</a>
+            </Link>
+          </p>
+        </form>
+        <GoogleButton />
+      </div>
+    </FormLayout>
   );
-};
-
-Login.getLayout = function getLayout(page: React.ReactElement) {
-  return <FormLayout>{page}</FormLayout>;
-};
+});
 
 export default Login;

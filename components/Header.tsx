@@ -4,12 +4,15 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useMutation } from "react-query";
+import { useSelector } from "react-redux";
 import { logoutUser } from "../api";
+import { selectUser } from "../slices/userSlice";
 import Loader from "./Loader";
 
 const Header = () => {
   const router = useRouter();
   const [isDropdown, setIsDropdown] = useState(false);
+  const user = useSelector(selectUser);
 
   const mutation = useMutation<
     { success: Boolean; message: string },
@@ -32,10 +35,17 @@ const Header = () => {
     <Loader />
   ) : (
     <header className="header">
-      <h3 className="logo">Logo</h3>
+      <Image
+        onClick={() => router.push("/")}
+        style={{ cursor: "pointer" }}
+        src="/images/logo.png"
+        height={40}
+        width={130}
+        objectFit="contain"
+      />
       <div className="avatar">
         <Image
-          src="/avatar.jpg"
+          src={user?.avatar.secure_url ? user.avatar.secure_url : "/avatar.jpg"}
           alt="image"
           height={40}
           width={40}

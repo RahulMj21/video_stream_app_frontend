@@ -1,14 +1,13 @@
-import { useEffect } from "react";
+import React from "react";
 import { useQuery } from "react-query";
-import { getAllVideos } from "../api";
+import { getMyVideos } from "../api";
 import AuthProtectedRoute from "../components/AuthProtectedRoute";
-import Loader from "../components/Loader";
 import VideoCard from "../components/VideoCard";
 import HomePageLayout from "../layouts/HomePageLayout";
 import { Video } from "../types";
 
-const Home = AuthProtectedRoute(() => {
-  const { isLoading, data, error } = useQuery("allVideos", getAllVideos);
+const myvideos = AuthProtectedRoute(() => {
+  const { isLoading, data, error } = useQuery("allVideos", getMyVideos);
 
   return (
     <HomePageLayout>
@@ -27,4 +26,4 @@ const Home = AuthProtectedRoute(() => {
   );
 });
 
-export default Home;
+export default myvideos;
