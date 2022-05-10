@@ -6,19 +6,38 @@ import UploadVideoModal from "./UploadVideoModal";
 const Sidebar = () => {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
+  const items = [
+    {
+      text: "Home",
+      path: "/",
+      icon: <FaHome />,
+      action: () => router.push("/"),
+    },
+    {
+      text: "My Uploads",
+      path: "/myuploads",
+      icon: <FaVideo />,
+      action: () => router.push("/myuploads"),
+    },
+    {
+      text: "Upload",
+      icon: <FaPlus />,
+      action: () => setShowModal(true),
+    },
+  ];
 
   return (
     <aside className="sidebar">
       {showModal && <UploadVideoModal setShowModal={setShowModal} />}
-      <div className="item" onClick={() => router.push("/")}>
-        <FaHome /> <p>Home</p>
-      </div>
-      <div className="item" onClick={() => router.push("/myvideos")}>
-        <FaVideo /> <p>My Videos</p>
-      </div>
-      <div className="item" onClick={() => setShowModal(true)}>
-        <FaPlus /> <p>Upload</p>
-      </div>
+      {items.map(({ text, icon, action, path }) => (
+        <div
+          className={`item ${router.pathname === path ? "active" : ""}`}
+          onClick={action}
+          key={text}
+        >
+          {icon} <p>{text}</p>
+        </div>
+      ))}
     </aside>
   );
 };

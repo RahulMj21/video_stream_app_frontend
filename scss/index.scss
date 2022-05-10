@@ -17,7 +17,16 @@
   margin: 0;
   box-sizing: border-box;
 }
-
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+::-webkit-scrollbar-track {
+  background: $dark-theme-bg-secondary;
+}
+::-webkit-scrollbar-thumb {
+  background: $brand-color;
+  border-radius: 1rem;
+}
 body {
   min-height: 100vh;
   font-family: "Roboto", sans-serif;

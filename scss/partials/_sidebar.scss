@@ -34,7 +34,8 @@
     gap: 0.5rem;
     @include transition-ease;
     cursor: pointer;
-    &:hover {
+    &:hover,
+    &.active {
       background: $dark-theme-bg-secondary;
       padding-left: 2.5rem;
     }
