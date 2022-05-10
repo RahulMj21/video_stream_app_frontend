@@ -1,8 +1,14 @@
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 4.3rem;
   padding: 0 2rem;
+  background: $dark-theme-bg-primary;
   border-bottom: 1px solid $dark-theme-border-light;
   @include flex-custom(row, center, space-between);
+  z-index: 100;
   .avatar {
     position: relative;
     img {

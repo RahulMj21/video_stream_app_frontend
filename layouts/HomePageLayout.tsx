@@ -6,10 +6,8 @@ const HomePageLayout = ({ children }: { children: ReactNode }) => {
   return (
     <section className="homeLayout">
       <Header />
-      <main className="main">
-        <Sidebar />
-        <div className="content">{children}</div>
-      </main>
+      <Sidebar />
+      <main className="main">{children}</main>
     </section>
   );
 };

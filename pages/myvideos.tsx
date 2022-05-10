@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getMyVideos } from "../api";
 import AuthProtectedRoute from "../components/AuthProtectedRoute";
@@ -7,7 +7,17 @@ import HomePageLayout from "../layouts/HomePageLayout";
 import { Video } from "../types";
 
 const myvideos = AuthProtectedRoute(() => {
-  const { isLoading, data, error } = useQuery("allVideos", getMyVideos);
+  const [isUpdateTriggered, setIsUpdateTriggered] = useState(false);
+  const { isLoading, data, error, refetch } = useQuery(
+    "allVideos",
+    getMyVideos
+  );
+
+  useEffect(() => {
+    if (isUpdateTriggered) {
+      refetch();
+    }
+  }, [isUpdateTriggered]);
 
   return (
     <HomePageLayout>
@@ -18,7 +28,11 @@ const myvideos = AuthProtectedRoute(() => {
       ) : (
         <div className="video-container">
           {data?.videos?.map((video: Video) => (
-            <VideoCard video={video} key={video.videoId} />
+            <VideoCard
+              setIsUpdateTriggered={setIsUpdateTriggered}
+              video={video}
+              key={video.videoId}
+            />
           ))}
         </div>
       )}

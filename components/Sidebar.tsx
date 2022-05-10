@@ -11,13 +11,13 @@ const Sidebar = () => {
     <aside className="sidebar">
       {showModal && <UploadVideoModal setShowModal={setShowModal} />}
       <div className="item" onClick={() => router.push("/")}>
-        <FaHome /> Home
+        <FaHome /> <p>Home</p>
       </div>
       <div className="item" onClick={() => router.push("/myvideos")}>
-        <FaVideo /> My Videos
+        <FaVideo /> <p>My Videos</p>
       </div>
       <div className="item" onClick={() => setShowModal(true)}>
-        <FaPlus /> Upload
+        <FaPlus /> <p>Upload</p>
       </div>
     </aside>
   );

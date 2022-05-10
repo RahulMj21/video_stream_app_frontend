@@ -1,10 +1,32 @@
 .sidebar {
-  position: relative;
-  flex: 0.15;
+  position: fixed;
+  top: 4.3rem;
+  left: 0;
+  height: calc(100vh - 4.3rem);
+  width: 12rem;
+  background: $dark-theme-bg-primary;
   border-right: 1px solid $dark-theme-border-light;
-  width: 100%;
   overflow: hidden;
   @include flex-custom(column, unset, unset);
+  z-index: 100;
+
+  @include media-lg {
+    width: 11rem;
+  }
+  @include media-md {
+    width: 3.8rem;
+    .item {
+      padding: 1.5rem 1rem !important;
+      justify-content: center;
+      svg {
+        font-size: 1.1rem !important;
+      }
+      p {
+        display: none;
+      }
+    }
+  }
+
   .item {
     width: 100%;
     padding: 1.5rem 2rem;

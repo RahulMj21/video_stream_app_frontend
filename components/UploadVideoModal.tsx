@@ -10,8 +10,12 @@ const UploadVideoModal = ({ setShowModal }: { setShowModal: Function }) => {
   const [dropRejected, setDropRejected] = useState(false);
 
   const mutation = useMutation(uploadVideo, {
-    onError: (error) => {
-      console.log("error--->", error);
+    onError: (error: any) => {
+      toast.error(
+        error?.response?.data.message
+          ? error.response.data.message
+          : error.message
+      );
     },
     onSuccess: (data) => {
       toast.success("upload complete");

@@ -20,3 +20,29 @@
 @mixin transition-ease() {
   transition: all 0.4s ease;
 }
+
+@mixin gradient-background() {
+  background: linear-gradient(
+    45deg,
+    rgba($dark-theme-bg-secondary, 0.5),
+    rgba($dark-theme-bg-secondary, 0.3)
+  );
+  border-left: 1px solid $dark-theme-border-light;
+  border-bottom: 1px solid $dark-theme-border-light;
+}
+
+@mixin media-lg() {
+  @media screen and(max-width:1100px) {
+    @content;
+  }
+}
+@mixin media-md() {
+  @media screen and(max-width:768px) {
+    @content;
+  }
+}
+@mixin media-sm() {
+  @media screen and(max-width:550px) {
+    @content;
+  }
+}

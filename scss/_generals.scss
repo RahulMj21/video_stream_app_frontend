@@ -60,8 +60,128 @@
     }
   }
 }
+.video-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  @include media-lg {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+  @include media-md {
+    gap: 1.2rem !important;
+  }
+  @include media-sm {
+    grid-template-columns: 1fr !important;
+  }
+}
 .empty-heading {
   text-align: center;
   font-size: 3rem;
   color: $dark-theme-border;
+}
+.input-group {
+  width: 100%;
+  position: relative;
+  margin-bottom: 2rem;
+  svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0.5rem;
+    font-size: 1.2rem;
+    // color: $light-theme-bg-primary;
+    color: $brand-color;
+  }
+  input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    padding-left: 2.5rem;
+    color: $light-theme-bg-primary;
+    background: transparent;
+    border-bottom: 1px solid $light-theme-border;
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    &:focus + span,
+    &:valid + span {
+      transform: translateY(-150%) scale(0.8);
+    }
+  }
+
+  span {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform-origin: top left;
+    transform: translateY(-50%);
+    left: 2.5rem;
+    color: $light-theme-bg-secondary;
+    @include transition-ease;
+    pointer-events: none;
+  }
+  .error {
+    position: absolute;
+    font-size: 0.87rem;
+    color: $red-color;
+    bottom: -1.5rem;
+    left: 0;
+  }
+  &.textarea {
+    margin-top: 0.5rem;
+    width: 100%;
+    svg {
+      top: 0.7rem;
+      left: 0.6rem;
+    }
+    span {
+      top: 0.6rem;
+      left: 2.5rem;
+    }
+    textarea {
+      min-width: 100%;
+      max-width: 100%;
+      min-height: 3rem;
+      max-height: 4rem;
+      padding: 0.2rem 1rem;
+      padding-left: 2.5rem;
+      background: transparent;
+      border-bottom: 1px solid $light-theme-border;
+      border-left: 1px solid $light-theme-border;
+      color: $light-theme-bg-primary;
+      &:focus + span,
+      &:valid + span {
+        transform: translateY(-150%) scale(0.8);
+      }
+    }
+  }
+}
+
+.toggle-switch {
+  position: relative;
+  height: 2.5rem;
+  width: 5rem;
+  border-radius: 3rem;
+  border: 1px solid $dark-theme-border;
+  cursor: pointer;
+  @include transition-ease;
+  &::before {
+    content: "";
+    position: absolute;
+    height: 2.1rem;
+    width: 2.1rem;
+    top: 0.15rem;
+    left: 0.15rem;
+    border-radius: 50%;
+    background: $brand-color;
+    @include transition-ease;
+  }
+  &.active {
+    background: $dark-theme-bg-secondary;
+    &::before {
+      transform: translateX(117%);
+    }
+  }
 }

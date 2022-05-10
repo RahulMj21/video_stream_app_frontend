@@ -1,0 +1,51 @@
+.videocard {
+  max-width: 100%;
+  min-height: 20rem;
+  @include gradient-background;
+  border-radius: 0.5rem;
+  .video {
+    position: relative;
+    width: 100%;
+    height: 10rem;
+    background: rgba(#ddd, 0.1);
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    @include flex-center(row);
+    cursor: pointer;
+    svg {
+      font-size: 3rem;
+      color: $brand-color-light;
+      @include transition-ease;
+      &:hover {
+        color: $brand-color;
+      }
+    }
+    span {
+      position: absolute;
+      bottom: 0.3rem;
+      right: 0.3rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 0.3rem;
+      background: $dark-theme-bg-primary-1;
+      pointer-events: none;
+      opacity: 0;
+      @include transition-ease;
+    }
+    &:hover span {
+      opacity: 1;
+    }
+  }
+  .info {
+    padding: 1rem;
+    .no-info {
+      width: 100%;
+      @include flex-align-center(column);
+      gap: 0.5rem;
+      .empty {
+        text-align: center;
+        color: $light-theme-border;
+        font-size: 1.3rem;
+      }
+    }
+  }
+}

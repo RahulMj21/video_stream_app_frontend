@@ -2,7 +2,7 @@
   min-height: 100vh;
   width: 100%;
   .container {
-    width: 30rem;
+    width: 28rem;
     padding: 4rem 0;
   }
   .content {
@@ -13,80 +13,33 @@
     border-radius: 0.8rem;
     text-align: center;
     h1 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 400;
       margin-bottom: 2rem;
     }
-    form {
-      width: 100%;
-      @include flex-custom(column, unset, unset);
-      .input-group {
-        width: 100%;
-        position: relative;
-        margin-bottom: 2rem;
-        svg {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          left: 0.5rem;
-          font-size: 1.2rem;
-          color: $light-theme-bg-primary;
-        }
-        input {
-          width: 100%;
-          padding: 0.5rem 1rem;
-          padding-left: 2.5rem;
-          color: $light-theme-bg-primary;
-          background: transparent;
-          border-bottom: 1px solid $light-theme-border;
+  }
+}
+form {
+  width: 100%;
+  @include flex-custom(column, unset, unset);
 
-          &::placeholder {
-            color: transparent;
-          }
-
-          &:not(:empty) + span,
-          &:focus + span,
-          &:valid + span {
-            transform: translateY(-150%) scale(0.8);
-          }
-        }
-        span {
-          display: inline-block;
-          position: absolute;
-          top: 50%;
-          transform-origin: top left;
-          transform: translateY(-50%);
-          left: 2.5rem;
-          color: $light-theme-bg-secondary;
-          @include transition-ease;
-        }
-        .error {
-          position: absolute;
-          font-size: 0.87rem;
-          color: $red-color;
-          bottom: -1.5rem;
-          left: 0;
-        }
-      }
-      .btn-brand {
-        margin: 1rem 0 2rem;
-      }
-      .toggle-auth {
-        font-size: 1.1rem;
-        a {
-          color: $brand-color;
-          border-bottom: 1px solid $brand-color;
-          font-weight: bold;
-          margin-left: 0.5rem;
-          @include transition-ease;
-          &:hover {
-            color: $brand-color-light;
-          }
-        }
-      }
-      .or {
-        margin: 1rem 0;
+  .btn-brand {
+    margin: 1rem 0 2rem;
+  }
+  .toggle-auth {
+    font-size: 1.1rem;
+    a {
+      color: $brand-color;
+      border-bottom: 1px solid $brand-color;
+      font-weight: bold;
+      margin-left: 0.5rem;
+      @include transition-ease;
+      &:hover {
+        color: $brand-color-light;
       }
     }
+  }
+  .or {
+    margin: 1rem 0;
   }
 }

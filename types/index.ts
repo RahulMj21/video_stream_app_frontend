@@ -9,5 +9,5 @@ export interface Video {
   creator: string;
   extension: string;
   videoId: string;
-  public: Boolean;
+  published: Boolean;
 }

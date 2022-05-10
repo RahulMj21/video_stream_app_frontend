@@ -1,11 +1,20 @@
 .homeLayout {
   .main {
-    display: flex;
+    position: relative;
+    top: 4.3rem;
+    left: 13rem;
+    padding: 2rem;
     min-height: calc(100vh - 4.3rem);
-    width: 100%;
-    .content {
-      flex: 0.85;
-      padding: 1.5rem 2rem;
+    width: calc(100vw - 14rem);
+    @include media-lg {
+      padding: 1.5rem;
+      left: 12rem;
+      width: calc(100vw - 13rem);
+    }
+    @include media-md {
+      padding: 1.2rem;
+      left: 3.8rem;
+      width: calc(100vw - 4rem);
     }
   }
 }

@@ -45,7 +45,11 @@ const Header = () => {
       />
       <div className="avatar">
         <Image
-          src={user?.avatar.secure_url ? user.avatar.secure_url : "/avatar.jpg"}
+          src={
+            user?.avatar.secure_url
+              ? user.avatar.secure_url
+              : "/images/avatar.png"
+          }
           alt="image"
           height={40}
           width={40}
