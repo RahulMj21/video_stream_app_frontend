@@ -1,0 +1,21 @@
+.singleVideo {
+  .streamedVideo {
+    display: block;
+    width: 800px;
+    max-width: 100%;
+    border: 2px solid $dark-theme-border;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .title {
+    font-size: 2rem;
+    color: $light-theme-bg-primary;
+    margin-bottom: 1rem;
+  }
+  .description {
+    font-size: 1.2rem;
+    color: $light-theme-border;
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+  }
+}

@@ -6,8 +6,17 @@ export interface User {
 export interface Video {
   videoTitle: string;
   videoDescription: string;
-  creator: string;
+  creator: {
+    _id: string;
+    name: string;
+    email: string;
+    avatar: {
+      public_id: string;
+      secure_url: string;
+    };
+  };
   extension: string;
   videoId: string;
   published: Boolean;
+  createdAt: string;
 }

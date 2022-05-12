@@ -1,8 +1,14 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { FaRegPlayCircle } from "react-icons/fa";
+import {
+  FaCaretRight,
+  FaLongArrowAltRight,
+  FaRegPlayCircle,
+  FaUser,
+} from "react-icons/fa";
 import { Video } from "../types";
 import VideoUpdateModal from "./VideoUpdateModal";
+import moment from "moment";
 
 const VideoCard = ({
   video,
@@ -30,26 +36,39 @@ const VideoCard = ({
         <FaRegPlayCircle />
         <span>click to play</span>
       </div>
-      <div className="info">
-        {video.videoTitle ? (
-          <>
-            <h3 className="title">{video.videoTitle}</h3>
-            <p className="description">{video.videoDescription}</p>
-          </>
-        ) : (
-          <div className="no-info">
-            <p className="empty">
-              Title and Description are not set. Please Update
+      {video.videoTitle ? (
+        <div className="info">
+          <div className="top">
+            <h3 className="title">
+              <FaCaretRight />
+              {video.videoTitle}
+            </h3>
+            <p className="description">
+              <FaLongArrowAltRight />
+              {video.videoDescription}
             </p>
-            <button
-              className="btn-brand"
-              onClick={() => setShowVideoUpdateModal(true)}
-            >
-              Update
-            </button>
           </div>
-        )}
-      </div>
+          <div className="footer">
+            <p className="creator">
+              <FaUser />
+              {video.creator.name}
+            </p>
+            <p className="date">{moment(video.createdAt).format("L")}</p>
+          </div>
+        </div>
+      ) : (
+        <div className="no-info">
+          <p className="empty">
+            Title and Description are not set. Please Update
+          </p>
+          <button
+            className="btn-brand"
+            onClick={() => setShowVideoUpdateModal(true)}
+          >
+            Update
+          </button>
+        </div>
+      )}
     </div>
   );
 };
