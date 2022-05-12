@@ -46,11 +46,11 @@ export const getMe = async () => {
     .catch(() => null);
 };
 
+export const updateUserProfile = async (input: object) => {
+  return api.put("/user/updateprofile", input).then((res) => res.data);
+};
 export const updateUserPassword = async (input: UpdatePasswordInput) => {
-  return api
-    .put("/user/updatepassword", input)
-    .then((res) => res.data)
-    .catch((err) => null);
+  return api.put("/user/updatepassword", input).then((res) => res.data);
 };
 
 export const forgotUserPassword = async (input: { email: string }) => {

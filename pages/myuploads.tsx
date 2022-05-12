@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getMyVideos } from "../api";
 import AuthProtectedRoute from "../components/AuthProtectedRoute";
+import SectionHeading from "../components/SectionHeading";
 import VideoCard from "../components/VideoCard";
 import HomePageLayout from "../layouts/HomePageLayout";
 import { Video } from "../types";
@@ -26,15 +27,18 @@ const myvideos = AuthProtectedRoute(() => {
       ) : isLoading ? (
         <h1 className="empty-heading">Loading..</h1>
       ) : (
-        <div className="video-container">
-          {data?.videos?.map((video: Video) => (
-            <VideoCard
-              setIsUpdateTriggered={setIsUpdateTriggered}
-              video={video}
-              key={video.videoId}
-            />
-          ))}
-        </div>
+        <>
+          <SectionHeading text="My Uploads" width={13.5} />
+          <div className="video-container">
+            {data?.videos?.map((video: Video) => (
+              <VideoCard
+                setIsUpdateTriggered={setIsUpdateTriggered}
+                video={video}
+                key={video.videoId}
+              />
+            ))}
+          </div>
+        </>
       )}
     </HomePageLayout>
   );

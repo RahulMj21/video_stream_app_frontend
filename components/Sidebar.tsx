@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import { FaHome, FaPlus, FaVideo } from "react-icons/fa";
+import { FaHome, FaPlus, FaUser, FaVideo } from "react-icons/fa";
 import UploadVideoModal from "./UploadVideoModal";
 
 const Sidebar = () => {
@@ -18,6 +18,12 @@ const Sidebar = () => {
       path: "/myuploads",
       icon: <FaVideo />,
       action: () => router.push("/myuploads"),
+    },
+    {
+      text: "Profile",
+      path: "/profile/me",
+      icon: <FaUser />,
+      action: () => router.push("/profile/me"),
     },
     {
       text: "Upload",

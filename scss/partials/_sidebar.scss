@@ -6,9 +6,18 @@
   width: 12rem;
   background: $dark-theme-bg-primary;
   border-right: 1px solid $dark-theme-border-light;
-  overflow: hidden;
+  overflow-x: hidden;
   @include flex-custom(column, unset, unset);
   z-index: 100;
+  &::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $dark-theme-bg-secondary;
+  }
 
   @include media-lg {
     width: 11rem;

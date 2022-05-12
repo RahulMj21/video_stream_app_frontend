@@ -3,6 +3,37 @@
   max-width: 90%;
   margin: 0 auto;
 }
+.section-heading {
+  position: relative;
+  font-size: 2rem;
+  font-weight: 500;
+  @include flex-align-center(row);
+  gap: 0.4rem;
+  margin-bottom: 4rem;
+  border-radius: 0.5rem;
+  svg {
+    font-size: 1.8rem;
+    @include transition-ease;
+  }
+  &::before {
+    position: absolute;
+    content: "";
+    bottom: -0.4rem;
+    width: 45%;
+    height: 4px;
+    border-radius: 0.5rem;
+    background: $brand-color;
+    @include transition-ease;
+  }
+  &:hover {
+    svg {
+      transform: translateX(0.5rem);
+    }
+    &::before {
+      width: 100%;
+    }
+  }
+}
 .btn-brand {
   padding: 0.6rem 1.8rem;
   font-size: 1.25rem;
@@ -14,6 +45,27 @@
   @include transition-ease;
   &:hover {
     background: $brand-color-light;
+  }
+  &:active {
+    transform: scale(0.98);
+    transition: none !important;
+  }
+}
+.btn-outlined {
+  padding: 0.6rem 1.8rem;
+  font-size: 1.25rem;
+  letter-spacing: 0.4px;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: $brand-color;
+  border: 1px solid $brand-color;
+  cursor: pointer;
+  @include flex-center(row);
+  gap: 0.5rem;
+  @include transition-ease;
+  &:hover {
+    background: $brand-color;
+    color: $light-theme-bg-primary;
   }
   &:active {
     transform: scale(0.98);

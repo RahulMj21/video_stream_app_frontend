@@ -1,8 +1,7 @@
-import { useEffect } from "react";
 import { useQuery } from "react-query";
 import { getAllVideos } from "../api";
 import AuthProtectedRoute from "../components/AuthProtectedRoute";
-import Loader from "../components/Loader";
+import SectionHeading from "../components/SectionHeading";
 import VideoCard from "../components/VideoCard";
 import HomePageLayout from "../layouts/HomePageLayout";
 import { Video } from "../types";
@@ -17,11 +16,18 @@ const Home = AuthProtectedRoute(() => {
       ) : isLoading ? (
         <h1 className="empty-heading">Loading..</h1>
       ) : (
-        <div className="video-container">
-          {data?.videos?.map((video: Video) => (
-            <VideoCard video={video} key={video.videoId} />
-          ))}
-        </div>
+        <>
+          <SectionHeading text="Home" width={8} />
+          <div className="video-container">
+            {data?.videos?.map((video: Video) => (
+              <VideoCard
+                setIsUpdateTriggered={() => {}}
+                video={video}
+                key={video.videoId}
+              />
+            ))}
+          </div>
+        </>
       )}
     </HomePageLayout>
   );

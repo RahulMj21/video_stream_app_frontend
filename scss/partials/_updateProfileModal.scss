@@ -1,0 +1,17 @@
+.update-profile {
+  .container {
+    width: 25rem !important;
+  }
+  .update-avatar {
+    width: 100%;
+    @include flex-align-center(row);
+    gap: 1.5rem;
+    margin: 1rem 0 1.5rem;
+    .avatar {
+      border-radius: 50%;
+    }
+    .btn-outlined {
+      width: 100%;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 .modal {
   position: fixed;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   top: 0;
   left: 0;
   padding: 4rem 0;
@@ -9,7 +9,9 @@
   z-index: 1000;
   .overlay {
     position: absolute;
-    height: 100%;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
     width: 100%;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(5px);
@@ -17,14 +19,15 @@
   }
   .container {
     min-height: 25rem !important;
-    width: 27rem !important;
+    width: 27rem;
+    max-width: 90%;
     @include gradient-background;
     border-radius: 1rem;
     padding: 1.5rem;
     backdrop-filter: blur(20px);
     .heading {
       font-size: 2.6rem;
-      color: $light-theme-border;
+      color: $light-theme-bg-primary;
       font-weight: 400;
       text-align: center;
       margin-bottom: 1.5rem;

@@ -58,7 +58,9 @@ const Header = () => {
         />
         <div className="overlay" onClick={() => setIsDropdown(false)} />
         <div className={`avatar__dropdown ${isDropdown ? "show" : ""}`}>
-          <div className="item">Profile</div>
+          <div className="item" onClick={() => router.push("/profile/me")}>
+            Profile
+          </div>
           <div className="item" onClick={() => mutation.mutate()}>
             Logout
           </div>

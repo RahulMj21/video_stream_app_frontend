@@ -1,0 +1,40 @@
+.profile {
+  .content {
+    width: 100%;
+    @include flex-align-center(row);
+    gap: 4rem;
+    @include media-md {
+    }
+
+    .left .avatar {
+      border: 4px solid $brand-color !important;
+      border-radius: 50%;
+    }
+    .right {
+      .info {
+        margin-bottom: 2rem;
+        .info-group {
+          width: 100%;
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+          color: $light-theme-bg-primary;
+          @include flex-align-center(row);
+          gap: 0.5rem;
+          span {
+            display: block;
+            flex: 1;
+            color: $light-theme-border;
+            border-bottom: 1px solid $light-theme-border;
+          }
+        }
+      }
+      .action-group {
+        @include flex-align-center(row);
+        gap: 2rem;
+        .btn-brand {
+          border-radius: 0.5rem;
+        }
+      }
+    }
+  }
+}
