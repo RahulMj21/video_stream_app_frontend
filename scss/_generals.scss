@@ -1,6 +1,6 @@
 .container {
   width: 80rem;
-  max-width: 90%;
+  max-width: 95%;
   margin: 0 auto;
 }
 .section-heading {
@@ -42,6 +42,8 @@
   border-radius: 0.3rem;
   background: $brand-color;
   cursor: pointer;
+  @include flex-center(row);
+  gap: 1rem;
   @include transition-ease;
   &:hover {
     background: $brand-color-light;
@@ -49,6 +51,18 @@
   &:active {
     transform: scale(0.98);
     transition: none !important;
+  }
+  svg {
+    animation: rotate 1s linear infinite;
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
   }
 }
 .btn-outlined {

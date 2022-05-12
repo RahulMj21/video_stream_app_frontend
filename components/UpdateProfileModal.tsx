@@ -1,12 +1,13 @@
 import Image from "next/image";
 import React, { FormEvent, useRef, useState } from "react";
-import { FaEnvelope, FaFileImage, FaUser } from "react-icons/fa";
+import { FaCircleNotch, FaEnvelope, FaFileImage, FaUser } from "react-icons/fa";
 import { useMutation } from "react-query";
 import { updateUserProfile } from "../api";
-import { User } from "../slices/userSlice";
+import { setUser, User } from "../slices/userSlice";
 import { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import Loader from "./Loader";
+import { useDispatch } from "react-redux";
 
 const UpdateProfileModal = ({
   setShowUpdateProfileModal,
@@ -15,18 +16,20 @@ const UpdateProfileModal = ({
   user: User;
   setShowUpdateProfileModal: Function;
 }) => {
+  const dispatch = useDispatch();
   const avatarRef = useRef<HTMLInputElement | null>(null);
   const [updatableImg, setUpdatableImg] = useState<string | null>(null);
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
 
   const mutation = useMutation<
-    { success: Boolean; message: string },
+    { success: Boolean; user: User },
     AxiosError,
     object
   >(updateUserProfile, {
-    onSuccess: ({ message }) => {
-      toast.success(message);
+    onSuccess: ({ user }) => {
+      toast.success("profile updated");
+      dispatch(setUser(user));
       setShowUpdateProfileModal(false);
     },
     onError: (error: any) => {
@@ -63,9 +66,7 @@ const UpdateProfileModal = ({
     };
   };
 
-  return mutation.isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <div className="modal update-profile">
       <div
         className="overlay"
@@ -127,8 +128,12 @@ const UpdateProfileModal = ({
                 onChange={handleAvatar}
               />
             </div>
-            <button type="submit" className="btn-brand">
-              Update
+            <button
+              type="submit"
+              className="btn-brand"
+              disabled={mutation.isLoading}
+            >
+              Update {mutation.isLoading && <FaCircleNotch />}
             </button>
           </form>
         </div>
